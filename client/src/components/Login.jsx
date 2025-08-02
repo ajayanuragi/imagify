@@ -19,8 +19,9 @@ const Login = () => {
     <motion.div
       className="fixed top-0 left-0 right-0 bottom-0 z-10 backdrop-blur-sm bg-black/30 flex justify-center items-center"
       initial={{ opacity: 0, y: -50 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: 0.1, duration: 0.4 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.3 }}
+      viewport={{ once: true }}
     >
       <form className="relative bg-white p-10 rounded-xl text-slate-500">
         <h1 className="text-center text-3xl text-neutral-700 font-medium">
