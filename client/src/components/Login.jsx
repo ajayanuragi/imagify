@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { assets } from "../assets/assets";
+import { motion } from "motion/react";
 import AppContext from "../context/AppContext";
 
 const Login = () => {
@@ -15,7 +16,12 @@ const Login = () => {
   }, []);
 
   return (
-    <div className="absolute top-0 left-0 right-0 bottom-0 z-10 backdrop-blur-sm bg-black/30 flex justify-center items-center">
+    <motion.div
+      className="fixed top-0 left-0 right-0 bottom-0 z-10 backdrop-blur-sm bg-black/30 flex justify-center items-center"
+      initial={{ opacity: 0, y: -50 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: 0.1, duration: 0.4 }}
+    >
       <form className="relative bg-white p-10 rounded-xl text-slate-500">
         <h1 className="text-center text-3xl text-neutral-700 font-medium">
           {state}
@@ -91,7 +97,7 @@ const Login = () => {
           onClick={() => setShowLogin(false)}
         />
       </form>
-    </div>
+    </motion.div>
   );
 };
 

@@ -1,8 +1,20 @@
-import React from "react";
+import React, { useContext } from "react";
 import { assets } from "../assets/assets";
 import { motion } from "motion/react";
+import { useNavigate } from "react-router";
+import AppContext from "../context/AppContext";
 
 const Header = () => {
+  const { user, setShowLogin } = useContext(AppContext);
+  const navigate = useNavigate();
+
+  const onClickHandler = () => {
+    if (user) {
+      navigate("/result");
+    } else {
+      setShowLogin(true);
+    }
+  };
   return (
     <motion.div
       className="flex flex-col justify-center  items-center text-center my-20"
@@ -48,6 +60,7 @@ const Header = () => {
           default: { duration: 0.5 },
           opacity: { delay: 0.8, duration: 1 },
         }}
+        onClick={onClickHandler}
       >
         Generate Images <img src={assets.star_group} alt="" className="h-6" />
       </motion.button>
