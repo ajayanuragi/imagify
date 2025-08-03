@@ -1,14 +1,27 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { assets } from "../assets/assets";
 import { motion } from "motion/react";
+import AppContext from "../context/AppContext";
 
 const Result = () => {
   const [image, setImage] = useState(assets.sample_img_1);
   const [isImageLoaded, setIsImageLoaded] = useState(false);
   const [loading, setLoading] = useState(false);
   const [input, setInput] = useState("");
+  const { generateImage } = useContext(AppContext);
 
-  const handleSubmit = async (e) => {};
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (!input) return;
+    setLoading(true);
+    const generatedImage = await generateImage(input);
+    if (generatedImage) {
+      setIsImageLoaded(true);
+      setImage(generatedImage);
+    }
+
+    setLoading(false);
+  };
 
   return (
     <motion.form
@@ -21,7 +34,11 @@ const Result = () => {
     >
       <div>
         <div className="relative">
-          <img src={image} alt="" className=" rounded" />
+          <img
+            src={image}
+            alt=""
+            className="rounded w-[512px] h-[512px] object-cover"
+          />
           <span
             className={`absolute bottom-0 left-0 h-1 bg-blue-500  ${
               loading ? "w-full transition-all duration-[10s]" : "w-0"
@@ -45,7 +62,7 @@ const Result = () => {
           />
           <button
             type="submit"
-            className="bg-zinc-900 px-10 sm:px-16 py-3 rounded-full"
+            className="bg-zinc-900 text-white px-10 sm:px-16 py-3 rounded-full"
           >
             Generate
           </button>
