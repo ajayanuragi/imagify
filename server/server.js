@@ -8,7 +8,12 @@ import imageRouter from "./routes/imageRoutes.js";
 const PORT = process.env.PORT || 4000;
 const app = express();
 app.use(express.json());
-app.use(cors());
+app.use(
+  cors({
+    origin: "https://imagify-virid-xi.vercel.app",
+    credentials: true,
+  })
+);
 
 app.use("/api/user", userRouter);
 app.use("/api/image", imageRouter);
