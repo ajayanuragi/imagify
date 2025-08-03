@@ -22,7 +22,7 @@ export const generateImage = async (req, res) => {
       });
     }
     const encodedPrompt = encodeURIComponent(prompt);
-    const imageUrl = `${process.env.IMAGE_URL}/${encodedPrompt}?model=kontext&width=500&height=500&nologo=true&private=true&enhance=true`;
+    const imageUrl = `${process.env.IMAGE_URL}/${encodedPrompt}?model=kontext&width=300&height=300&nologo=true&private=true&enhance=true`;
 
     const response = await axios.get(imageUrl, {
       responseType: "arraybuffer",
