@@ -25,7 +25,7 @@
 | Backend    | Express.js (Node.js)        |
 | Auth       | JWT + bcrypt                |
 | Database   | MongoDB (Mongoose)          |
-| AI Engine  | Text-to-image API (e.g. Replicate, DALL·E) |
+| AI Engine  | Text-to-image API           |
 | Storage    | Local file system           |
 | Deployment | Vercel / Render             |
 
